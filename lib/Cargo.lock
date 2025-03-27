@@ -52,6 +52,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 
 [[package]]
+name = "fixedbitset"
+version = "0.5.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d674e81391d1e1ab681a28d99df07927c6d4aa5b027d7da16ba32d1d21ecd99"
+
+[[package]]
 name = "heck"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -164,9 +170,9 @@ dependencies = [
 [[package]]
 name = "petal-clustering"
 version = "0.11.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f9ba85311a22b12a6d9a0ace017382204be399ad99840dc2c4a0887aefad2d15"
+source = "git+https://github.com/Menonlab-Rich/petal-clustering#19ff55465f850067cb5ecb32f39b5bb5382c5bfd"
 dependencies = [
+ "fixedbitset",
  "ndarray",
  "num-traits",
  "petal-neighbors",

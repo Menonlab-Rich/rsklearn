@@ -28,16 +28,7 @@ impl DBScan {
     ) -> PyResult<Py<PyArray1<i32>>> {
         // TODO implement other metrics
         let arr_data = data.as_array();
-        let n_points = arr_data.nrows();
-        let (clusters, _noise) =
-            Dbscan::new(self.eps, self.min_samples, Euclidean::default()).fit(&arr_data);
-        let mut labels = vec![-1; n_points];
-
-        for (id, pts) in clusters {
-            for &pt_idx in pts.iter() {
-                labels[pt_idx] = id as i32;
-            }
-        }
+        let labels = Dbscan::new(self.eps, self.min_samples, Euclidean::default()).fit(&arr_data);
 
         Ok(PyArray1::from_vec(py, labels).unbind())
     }
