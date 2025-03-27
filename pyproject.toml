@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "rsklearn"
-version = "0.1.1"
+version = "0.1.2"
 description = "A rust implementation of some of the sklearn modules"
 readme = "README.md"
 authors = [{ name = "Rich Baird", email = "rich@rbaird.me" }]
