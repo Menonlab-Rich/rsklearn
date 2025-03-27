@@ -1,0 +1,15 @@
+[package]
+name = "rsklearn"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "rsklearn"
+crate-type = ["cdylib"]
+
+[dependencies]
+ndarray = "0.16.1"
+numpy = "0.24.0"
+petal-clustering = "0.11.0"
+petal-neighbors = "0.12.0"
+pyo3 = { version = "0.24.0", features = ["extension-module"] }

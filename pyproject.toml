@@ -1,0 +1,20 @@
+[build-syste]
+requires = ["maturin>=1.8,<2.0"]
+build-backend = "maturin"
+[project]
+name = "rsklearn"
+version = "0.1.0"
+description = "A rust implementation of some of the sklearn modules"
+readme = "README.md"
+authors = [
+  {name = "Rich Baird", email = "rich@rbaird.me" }
+]
+requires-python = ">=3.10"
+dependencies = ["matplotlib>=3.10.1", "numpy>=1.20.0"]
+[dependency-groups]
+dev = ["maturin>=1.8.3", "pyqt6>=6.8.1"]
+[tool.maturin]
+features = ["pyo3/extensions-module"]
+module-name = "rsklearn"
+python-source = "python"
+manifest-path = "lib/Cargo.toml"
