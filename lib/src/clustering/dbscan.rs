@@ -8,6 +8,7 @@ pub struct DBScan {
     eps: f32,
     min_samples: usize,
     metric: String,
+    _chunk_size: usize,
 }
 
 #[pymethods]
@@ -18,6 +19,7 @@ impl DBScan {
             eps,
             min_samples,
             metric: metric.to_string(),
+            _chunk_size: 10000,
         }
     }
 
@@ -28,8 +30,13 @@ impl DBScan {
     ) -> PyResult<Py<PyArray1<i32>>> {
         // TODO implement other metrics
         let arr_data = data.as_array();
-        let labels = Dbscan::new(self.eps, self.min_samples, Euclidean::default()).fit(&arr_data);
-
+        let mut dbscan = Dbscan::new(self.eps, self.min_samples, Euclidean::default());
+        dbscan.set_chunk_size(self._chunk_size);
+        let labels = dbscan.fit(&arr_data);
         Ok(PyArray1::from_vec(py, labels).unbind())
+    }
+
+    fn set_chunk_size<'py>(&mut self, _py: Python<'py>, size: usize) {
+        self._chunk_size = size;
     }
 }
