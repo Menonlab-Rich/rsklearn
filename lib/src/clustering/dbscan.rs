@@ -5,7 +5,7 @@ use pyo3::prelude::*;
 
 #[pyclass]
 pub struct DBScan {
-    eps: f64,
+    eps: f32,
     min_samples: usize,
     metric: String,
 }
@@ -13,7 +13,7 @@ pub struct DBScan {
 #[pymethods]
 impl DBScan {
     #[new]
-    fn new(eps: f64, min_samples: usize, metric: &str) -> Self {
+    fn new(eps: f32, min_samples: usize, metric: &str) -> Self {
         DBScan {
             eps,
             min_samples,
@@ -24,7 +24,7 @@ impl DBScan {
     fn fit<'py>(
         &self,
         py: Python<'py>,
-        data: PyReadonlyArray2<f64>,
+        data: PyReadonlyArray2<f32>,
     ) -> PyResult<Py<PyArray1<i32>>> {
         // TODO implement other metrics
         let arr_data = data.as_array();
