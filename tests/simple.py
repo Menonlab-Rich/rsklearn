@@ -10,7 +10,7 @@ cluster2 = np.random.randn(100, 2) * 0.5 + np.array([2, 2])
 # Add some noise
 noise = np.random.uniform(-4, 4, (30, 2))
 # Combine all data
-X = np.vstack([cluster1, cluster2, noise])
+X = np.vstack([cluster1, cluster2, noise]).astype(np.float32)
 
 # Create and fit the DBSCAN model
 dbscan = clustering.DBScan(eps=0.5, min_samples=5, metric="")

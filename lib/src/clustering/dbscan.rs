@@ -31,8 +31,11 @@ impl DBScan {
         // TODO implement other metrics
         let arr_data = data.as_array();
         let mut dbscan = Dbscan::new(self.eps, self.min_samples, Euclidean::default());
+         // Release the GIL to allow the Rust code to run truly in parallel
         dbscan.set_chunk_size(self._chunk_size);
-        let labels = dbscan.fit(&arr_data);
+        let labels = py.allow_threads(|| {
+            dbscan.fit(&arr_data)
+        });
         Ok(PyArray1::from_vec(py, labels).unbind())
     }
 
